@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "831195515778",
+    "firebase_url": "https://proyectodti-3e1b6-default-rtdb.firebaseio.com",
+    "project_id": "proyectodti-3e1b6",
+    "storage_bucket": "proyectodti-3e1b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:831195515778:android:8077d5b5e1a46221ed5d9b",
+        "android_client_info": {
+          "package_name": "com.example.mydti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "831195515778-ilknbabjmdc5vbr449ecvalj1b99l85p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF5zgljoTzkp_JttDSm5xRMGg7IQa-HjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "831195515778-ilknbabjmdc5vbr449ecvalj1b99l85p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

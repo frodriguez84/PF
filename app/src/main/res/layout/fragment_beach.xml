@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.BeachFragment" >
+
+    <me.tankery.lib.circularseekbar.CircularSeekBar
+        android:id="@+id/pcaforo"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:cs_circle_color="@android:color/holo_green_dark"
+        app:cs_circle_progress_color="@android:color/holo_red_dark"
+        app:cs_circle_stroke_width="8dp"
+        app:cs_circle_style="butt"
+        app:cs_disable_pointer="false"
+        app:cs_disable_progress_glow="true"
+        app:cs_end_angle="0"
+        app:cs_hide_progress_when_empty="true"
+        app:cs_lock_enabled="true"
+        app:cs_maintain_equal_circle="true"
+        app:cs_max="100"
+        app:cs_move_outside_circle="true"
+        app:cs_negative_enabled="false"
+        app:cs_pointer_alpha_ontouch="5"
+        app:cs_pointer_angle="1"
+        app:cs_pointer_color="@android:color/white"
+        app:cs_pointer_stroke_width="12dp"
+        app:cs_start_angle="180"
+        app:cs_use_custom_radii="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.309" />
+
+    <TextView
+        android:id="@+id/aforoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aforo"
+        app:layout_constraintBottom_toBottomOf="@+id/pcaforo"
+        app:layout_constraintEnd_toEndOf="@+id/pcaforo"
+        app:layout_constraintStart_toStartOf="@+id/pcaforo"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+    <me.tankery.lib.circularseekbar.CircularSeekBar
+        android:id="@+id/pctemp"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:cs_circle_color="@android:color/holo_red_dark"
+        app:cs_circle_progress_color="@android:color/holo_green_light"
+        app:cs_circle_stroke_width="8dp"
+        app:cs_circle_style="butt"
+        app:cs_disable_pointer="false"
+        app:cs_disable_progress_glow="true"
+        app:cs_end_angle="0"
+        app:cs_hide_progress_when_empty="true"
+        app:cs_lock_enabled="true"
+        app:cs_maintain_equal_circle="true"
+        app:cs_max="40"
+        app:cs_move_outside_circle="true"
+        app:cs_negative_enabled="false"
+        app:cs_pointer_alpha_ontouch="5"
+        app:cs_pointer_angle="1"
+        app:cs_pointer_color="@android:color/holo_blue_dark"
+        app:cs_pointer_stroke_width="12dp"
+        app:cs_start_angle="180"
+        app:cs_use_custom_radii="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pcpark"
+        app:layout_constraintStart_toEndOf="@+id/pcaforo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.309" />
+
+    <me.tankery.lib.circularseekbar.CircularSeekBar
+        android:id="@+id/pcUv"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:paddingTop="8dp"
+        app:cs_circle_color="@android:color/holo_green_dark"
+        app:cs_circle_progress_color="@android:color/holo_red_dark"
+        app:cs_circle_stroke_width="8dp"
+        app:cs_circle_style="butt"
+        app:cs_disable_pointer="false"
+        app:cs_disable_progress_glow="true"
+        app:cs_end_angle="0"
+        app:cs_hide_progress_when_empty="true"
+        app:cs_lock_enabled="true"
+        app:cs_maintain_equal_circle="true"
+        app:cs_max="10"
+        app:cs_move_outside_circle="true"
+        app:cs_negative_enabled="false"
+        app:cs_pointer_alpha_ontouch="5"
+        app:cs_pointer_angle="1"
+        app:cs_pointer_stroke_width="12dp"
+        app:cs_start_angle="180"
+        app:cs_use_custom_radii="false"
+        app:layout_constraintEnd_toStartOf="@+id/textView18"
+        app:layout_constraintStart_toEndOf="@+id/pcaforo"
+        app:layout_constraintTop_toBottomOf="@+id/pctemp" />
+
+    <TextView
+        android:id="@+id/tempTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperatura"
+        app:layout_constraintBottom_toBottomOf="@+id/pctemp"
+        app:layout_constraintEnd_toEndOf="@+id/pctemp"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/pctemp"
+        app:layout_constraintTop_toTopOf="@+id/pctemp"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <TextView
+        android:id="@+id/nameBeach"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="16dp"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.828" />
+
+    <me.tankery.lib.circularseekbar.CircularSeekBar
+        android:id="@+id/pcpark"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:cs_circle_color="@android:color/holo_green_dark"
+        app:cs_circle_progress_color="@android:color/holo_red_dark"
+        app:cs_circle_stroke_width="8dp"
+        app:cs_circle_style="butt"
+        app:cs_disable_pointer="false"
+        app:cs_disable_progress_glow="true"
+        app:cs_end_angle="0"
+        app:cs_hide_progress_when_empty="true"
+        app:cs_lock_enabled="true"
+        app:cs_maintain_equal_circle="true"
+        app:cs_max="100"
+        app:cs_move_outside_circle="true"
+        app:cs_negative_enabled="false"
+        app:cs_pointer_alpha_ontouch="5"
+        app:cs_pointer_angle="1"
+        app:cs_pointer_color="@android:color/holo_blue_dark"
+        app:cs_pointer_stroke_width="12dp"
+        app:cs_start_angle="180"
+        app:cs_use_custom_radii="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.308" />
+
+    <TextView
+        android:id="@+id/parkTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parking"
+
+        app:layout_constraintBottom_toBottomOf="@+id/pcpark"
+        app:layout_constraintEnd_toEndOf="@+id/pcpark"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="@+id/pcpark"
+        app:layout_constraintTop_toTopOf="@+id/pcpark"
+        app:layout_constraintVertical_bias="0.914" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Aforo"
+        app:layout_constraintBottom_toTopOf="@+id/pcaforo"
+        app:layout_constraintEnd_toEndOf="@+id/pcaforo"
+        app:layout_constraintStart_toStartOf="@+id/pcaforo" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Temperatura"
+        app:layout_constraintBottom_toTopOf="@+id/pctemp"
+        app:layout_constraintEnd_toEndOf="@+id/pctemp"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="@+id/pctemp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Parking"
+        app:layout_constraintBottom_toTopOf="@+id/pcpark"
+        app:layout_constraintEnd_toEndOf="@+id/pcpark"
+        app:layout_constraintStart_toStartOf="@+id/pcpark" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/crowd"
+        app:layout_constraintBottom_toBottomOf="@+id/pcaforo"
+        app:layout_constraintEnd_toEndOf="@+id/pcaforo"
+        app:layout_constraintStart_toStartOf="@+id/pcaforo"
+        app:layout_constraintTop_toTopOf="@+id/pcaforo" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/temp"
+        app:layout_constraintBottom_toBottomOf="@+id/pctemp"
+        app:layout_constraintEnd_toEndOf="@+id/pctemp"
+        app:layout_constraintStart_toStartOf="@+id/pctemp"
+        app:layout_constraintTop_toTopOf="@+id/pctemp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/parking"
+        app:layout_constraintBottom_toBottomOf="@+id/pcpark"
+        app:layout_constraintEnd_toEndOf="@+id/pcpark"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/pcpark"
+        app:layout_constraintTop_toTopOf="@+id/pcpark" />
+
+    <Button
+        android:id="@+id/btnAddFavoritos"
+        android:layout_width="231dp"
+        android:layout_height="43dp"
+        android:text="Agregar a Favoritos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+    <Button
+        android:id="@+id/btnRemoveFavoritos"
+        android:layout_width="231dp"
+        android:layout_height="43dp"
+        android:text="Eliminar de Favoritos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnAddFavoritos" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="176dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pctemp" />
+
+    <Button
+        android:id="@+id/homeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="16dp"
+        android:text="Volver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/flagImage"
+        android:layout_width="94dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pcaforo"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/flagTextView"
+        android:layout_width="114dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="24dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/space2"
+        app:layout_constraintEnd_toEndOf="@+id/flagImage"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@+id/flagImage" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Bandera"
+        app:layout_constraintBottom_toTopOf="@+id/flagImage"
+        app:layout_constraintEnd_toEndOf="@+id/flagImage"
+        app:layout_constraintStart_toStartOf="@+id/flagImage"
+        app:layout_constraintTop_toBottomOf="@+id/pcaforo" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Rayos UV"
+        app:layout_constraintBottom_toTopOf="@+id/pcUv"
+        app:layout_constraintEnd_toEndOf="@+id/pcUv"
+        app:layout_constraintStart_toStartOf="@+id/pcUv"
+        app:layout_constraintTop_toBottomOf="@+id/pctemp" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sun"
+        app:layout_constraintBottom_toBottomOf="@+id/pcUv"
+        app:layout_constraintEnd_toEndOf="@+id/pcUv"
+        app:layout_constraintStart_toStartOf="@+id/pcUv"
+        app:layout_constraintTop_toTopOf="@+id/pcUv" />
+
+    <TextView
+        android:id="@+id/uvRaystextView"
+        android:layout_width="90dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="10dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/pcUv"
+        app:layout_constraintEnd_toEndOf="@+id/pcUv"
+        app:layout_constraintStart_toStartOf="@+id/pcUv" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Velocidad"
+        app:layout_constraintEnd_toStartOf="@+id/textView17"
+        app:layout_constraintStart_toStartOf="@+id/pcpark"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Direccion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Viento"
+        app:layout_constraintEnd_toEndOf="@+id/pcpark"
+        app:layout_constraintStart_toStartOf="@+id/pcpark"
+        app:layout_constraintTop_toBottomOf="@+id/pcpark" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/wind"
+        app:layout_constraintEnd_toEndOf="@+id/textView15"
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/windirection"
+        app:layout_constraintEnd_toEndOf="@+id/textView17"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/windVelTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="windVel"
+        app:layout_constraintEnd_toEndOf="@+id/imageView9"
+        app:layout_constraintStart_toStartOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+    <TextView
+        android:id="@+id/windDirTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="windDir"
+        app:layout_constraintEnd_toEndOf="@+id/textView17"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Altura Olas"
+        app:layout_constraintEnd_toEndOf="@+id/windVelTV"
+        app:layout_constraintStart_toStartOf="@+id/windVelTV"
+        app:layout_constraintTop_toBottomOf="@+id/windVelTV" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/waves"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/windDirTV" />
+
+    <TextView
+        android:id="@+id/altOlasTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/textView18"
+        app:layout_constraintStart_toStartOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

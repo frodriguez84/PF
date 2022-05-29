@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.proyectofinal.fragments.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_recuMailFragment"
+            app:destination="@id/recuMailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.proyectofinal.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_beachFragment"
+            app:destination="@id/beachFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoritosFragment"
+        android:name="com.example.proyectofinal.fragments.FavoritosFragment"
+        android:label="fragment_favoritos"
+        tools:layout="@layout/fragment_favoritos" >
+        <action
+            android:id="@+id/action_favoritosFragment_to_beachFragment"
+            app:destination="@id/beachFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.proyectofinal.fragments.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_formularioFragment"
+            app:destination="@id/formularioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.proyectofinal.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/beachFragment"
+        android:name="com.example.proyectofinal.fragments.BeachFragment"
+        android:label="fragment_beach"
+        tools:layout="@layout/fragment_beach" >
+        <argument
+            android:name="dti"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/recuMailFragment"
+        android:name="com.example.proyectofinal.fragments.RecuMailFragment"
+        android:label="fragment_recu_mail"
+        tools:layout="@layout/fragment_recu_mail" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.proyectofinal.fragments.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/formularioFragment"
+        android:name="com.example.proyectofinal.fragments.FormularioFragment"
+        android:label="formulario_fragment"
+        tools:layout="@layout/formulario_fragment" />
+</navigation>
