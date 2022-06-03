@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 
@@ -25,7 +26,7 @@ class BeachFragment : Fragment() {
 
     private val vm: BeachViewModel by viewModels()
 
-    private lateinit var btnHome: Button
+    private lateinit var btnHome: ImageButton
     private lateinit var btnMap: Button
 
     private lateinit var idPlaya: String
@@ -41,7 +42,7 @@ class BeachFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_beach, container, false)
 
         btnMap = v.findViewById(R.id.btnMap)
-        //btnHome = v.findViewById(R.id.homeBtn)
+        btnHome = v.findViewById(R.id.btnVolver)
         bAddToFav = v.findViewById(R.id.btnAddFavoritos)
         bRemoveFav = v.findViewById(R.id.btnRemoveFavoritos)
 
@@ -90,13 +91,13 @@ class BeachFragment : Fragment() {
             v.findNavController().navigate(action)
         }
 
-
-        var action = BeachFragmentDirections.actionBeachFragmentToHomeFragment()
-        val callBack = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                v.findNavController().navigate(action)
-            }
+        btnHome.setOnClickListener {
+            activity?.onBackPressed()
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
+
+
     }
 }
+
+
+

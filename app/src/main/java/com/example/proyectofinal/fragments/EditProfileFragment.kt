@@ -14,12 +14,9 @@ import com.example.proyectofinal.viewmodels.EditProfileViewModel
 
 class EditProfileFragment : Fragment() {
 
-   private lateinit var v : View
-
-    private val vm : EditProfileViewModel by viewModels()
-
-    private lateinit var saveBtn : Button
-    //private lateinit var backBtn : Button
+    private lateinit var v: View
+    private val vm: EditProfileViewModel by viewModels()
+    private lateinit var saveBtn: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +25,7 @@ class EditProfileFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_edit_profile, container, false)
 
         saveBtn = v.findViewById(R.id.editBtn)
-        //backBtn = v.findViewById(R.id.btnBackP)
+
         return v
     }
 
@@ -38,18 +35,16 @@ class EditProfileFragment : Fragment() {
         vm.showData(v)
 
         saveBtn.setOnClickListener {
-            vm.saveData(v)
-            vm.saveDataMessage(v, requireContext())
-            activity?.onBackPressed()
+            if (vm.saveData(v)) {
+                vm.saveDataMessage(v, requireContext())
+                activity?.onBackPressed()
+            } else {
+                vm.failSaveDataMessage(v, requireContext())
+            }
         }
-
-        /*backBtn.setOnClickListener {
-            activity?.onBackPressed()
-        }*/
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
-
 }

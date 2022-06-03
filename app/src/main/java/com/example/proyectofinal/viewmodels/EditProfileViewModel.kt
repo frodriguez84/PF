@@ -27,8 +27,9 @@ class EditProfileViewModel : ViewModel() {
     private lateinit var ciu: String
 
 
-    fun saveData(v: View) {
+    fun saveData(v: View): Boolean {
 
+        var ok = false
         nameText = v.findViewById(R.id.nameEdit)
         lastNameText = v.findViewById(R.id.lastEdit)
         telText = v.findViewById(R.id.telEdit)
@@ -52,21 +53,19 @@ class EditProfileViewModel : ViewModel() {
         if (name.isNotEmpty() && lName.isNotEmpty() && tel.isNotEmpty() && prov.isNotEmpty() && city.isNotEmpty()) {
             db.collection("users").document(UserRepository.userMailLogin)
                 .set(user, SetOptions.merge())
-
+            ok = true
         } else {
 
         }
+        return ok
+    }
 
-        /*db.collection("users").document(UserRepository.userMailLogin).set(
-            hashMapOf(
-                "apellido" to lastNameText.text.toString(),
-                "nombre" to nameText.text.toString(),
-                "telefono" to telText.text.toString(),
-                "provincia" to provText.text.toString(),
-                "ciudad" to cityText.text.toString()
-            ),
-            SetOptions.merge()
-        )*/
+    fun failSaveDataMessage(v: View, context: Context) {
+        val text = "Todo los campos deben estar completos"
+        val duration = Toast.LENGTH_SHORT
+
+        val toast = Toast.makeText(context, text, duration)
+        toast.show()
     }
 
     fun saveDataMessage(v: View, context: Context) {
@@ -123,9 +122,6 @@ class EditProfileViewModel : ViewModel() {
                     cityText.text = ""
                 }
             }
-
         }
-
     }
-
 }

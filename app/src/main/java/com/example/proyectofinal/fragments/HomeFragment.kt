@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.proyectofinal.R
@@ -144,6 +145,8 @@ class HomeFragment : Fragment() {
         }
         return listDtiNombres
     }
+
+
 
 }
 
