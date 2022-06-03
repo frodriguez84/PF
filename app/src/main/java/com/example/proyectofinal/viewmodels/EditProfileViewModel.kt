@@ -14,17 +14,17 @@ import com.google.firebase.firestore.SetOptions
 class EditProfileViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
-    private lateinit var nameText : TextView
-    private lateinit var lastNameText : TextView
-    private lateinit var telText : TextView
-    private lateinit var provText : TextView
-    private lateinit var cityText : TextView
+    private lateinit var nameText: TextView
+    private lateinit var lastNameText: TextView
+    private lateinit var telText: TextView
+    private lateinit var provText: TextView
+    private lateinit var cityText: TextView
 
-    private lateinit var name : String
-    private lateinit var last : String
-    private lateinit var tel : String
-    private lateinit var prov : String
-    private lateinit var ciu : String
+    private lateinit var name: String
+    private lateinit var last: String
+    private lateinit var tel: String
+    private lateinit var prov: String
+    private lateinit var ciu: String
 
 
     fun saveData(v: View) {
@@ -35,19 +35,41 @@ class EditProfileViewModel : ViewModel() {
         provText = v.findViewById(R.id.provEdit)
         cityText = v.findViewById(R.id.cityEdit)
 
-        db.collection("users").document(UserRepository.userMailLogin).set(
+        val name = nameText.text.toString()
+        val lName = lastNameText.text.toString()
+        val tel = telText.text.toString()
+        val prov = provText.text.toString()
+        val city = cityText.text.toString()
+
+        val user = hashMapOf(
+            "nombre" to name,
+            "apellido" to lName,
+            "telefono" to tel,
+            "provincia" to prov,
+            "ciudad" to city
+        )
+
+        if (name.isNotEmpty() && lName.isNotEmpty() && tel.isNotEmpty() && prov.isNotEmpty() && city.isNotEmpty()) {
+            db.collection("users").document(UserRepository.userMailLogin)
+                .set(user, SetOptions.merge())
+
+        } else {
+
+        }
+
+        /*db.collection("users").document(UserRepository.userMailLogin).set(
             hashMapOf(
                 "apellido" to lastNameText.text.toString(),
                 "nombre" to nameText.text.toString(),
                 "telefono" to telText.text.toString(),
                 "provincia" to provText.text.toString(),
                 "ciudad" to cityText.text.toString()
-            ) ,
+            ),
             SetOptions.merge()
-        )
+        )*/
     }
 
-    fun saveDataMessage(v: View, context : Context){
+    fun saveDataMessage(v: View, context: Context) {
         val text = "Los datos fueron guardados correctamente"
         val duration = Toast.LENGTH_SHORT
 
@@ -66,7 +88,7 @@ class EditProfileViewModel : ViewModel() {
 
         val docRef = db.collection("users").document(UserRepository.userMailLogin)
 
-        docRef.get().addOnCompleteListener{ document ->
+        docRef.get().addOnCompleteListener { document ->
             if (document != null) {
 
                 name = document.result.get("nombre").toString()
@@ -75,27 +97,27 @@ class EditProfileViewModel : ViewModel() {
                 prov = document.result.get("provincia").toString()
                 ciu = document.result.get("ciudad").toString()
 
-                if (name != "null"){
+                if (name != "null") {
                     nameText.text = name
                 } else {
                     nameText.text = ""
                 }
-                if(last != "null") {
+                if (last != "null") {
                     lastNameText.text = last
                 } else {
                     lastNameText.text = ""
                 }
-                if(tel != "null") {
+                if (tel != "null") {
                     telText.text = tel
                 } else {
                     telText.text = ""
                 }
-                if(prov != "null") {
+                if (prov != "null") {
                     provText.text = prov
                 } else {
                     provText.text = ""
                 }
-                if(ciu != "null") {
+                if (ciu != "null") {
                     cityText.text = ciu
                 } else {
                     cityText.text = ""

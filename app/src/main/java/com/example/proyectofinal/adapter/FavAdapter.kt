@@ -18,8 +18,7 @@ class FavAdapter(
 
 ) : RecyclerView.Adapter<FavAdapter.FavHolder>() {
 
-    private val db = FirebaseFirestore.getInstance()
-    private lateinit var nombre: String
+
 
     class FavHolder(v : View) : RecyclerView.ViewHolder(v){
 
@@ -37,8 +36,6 @@ class FavAdapter(
         fun getCard () : CardView {
             return view.findViewById(R.id.card)
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavHolder {
@@ -48,9 +45,9 @@ class FavAdapter(
 
     override fun onBindViewHolder(holder: FavHolder, position: Int) {
 
-        var fav = listOfFavs[position]
+        val fav = listOfFavs[position]
 
-        var dti = ListDti[fav.toInt()]
+        val dti = ListDti[fav.toInt()]
         holder.setName(dti.nombre)
 
         holder.getCard().setOnClickListener{

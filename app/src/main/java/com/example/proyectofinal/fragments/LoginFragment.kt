@@ -33,7 +33,6 @@ class LoginFragment : Fragment() {
     private lateinit var btnRecu : Button
     private lateinit var mail : String
 
-
     private lateinit var v : View
 
     override fun onCreateView(
@@ -59,8 +58,6 @@ class LoginFragment : Fragment() {
 
 
             if (email.text.isNotEmpty() && pass.text.isNotEmpty()) {
-                if (true) {
-
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(
                         email.text.toString(),
                         pass.text.toString()
@@ -73,11 +70,6 @@ class LoginFragment : Fragment() {
                             vm.registerFail(c)
                         }
                     }
-
-                } else{
-                    Toast.makeText(requireContext(), "Usuario ya existe", Toast.LENGTH_SHORT)
-                }
-
             } else {
                     vm.registerFail(c)
             }

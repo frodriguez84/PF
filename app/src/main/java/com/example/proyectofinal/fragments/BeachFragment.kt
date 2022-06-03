@@ -7,41 +7,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Geopoint
+import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.viewmodels.BeachViewModel
-
+import com.squareup.okhttp.Dispatcher
 
 
 class BeachFragment : Fragment() {
 
-    private lateinit var v : View
+    private lateinit var v: View
 
     private val vm: BeachViewModel by viewModels()
 
-    private lateinit var btnHome : Button
+    private lateinit var btnHome: Button
+    private lateinit var btnMap: Button
 
-    private lateinit var idPlaya : String
+    private lateinit var idPlaya: String
 
-    private lateinit var bAddToFav : Button
-    private lateinit var bRemoveFav : Button
-
-
+    private lateinit var bAddToFav: Button
+    private lateinit var bRemoveFav: Button
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_beach, container, false)
 
-        btnHome = v.findViewById(R.id.homeBtn)
+        btnMap = v.findViewById(R.id.btnMap)
+        //btnHome = v.findViewById(R.id.homeBtn)
         bAddToFav = v.findViewById(R.id.btnAddFavoritos)
         bRemoveFav = v.findViewById(R.id.btnRemoveFavoritos)
-
-
 
         return v
     }
@@ -49,44 +51,52 @@ class BeachFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-     idPlaya = BeachFragmentArgs.fromBundle(requireArguments()).dti
+        idPlaya = BeachFragmentArgs.fromBundle(requireArguments()).dti
+
+        val playa = ListDti[idPlaya.toInt()]
+        val lat = playa.geopoint.latitud
+        val long = playa.geopoint.longitud
+        val geo = Geopoint(lat, long)
+        val nombre = playa.nombre
 
 
-
-      vm.showDataBeach(idPlaya , v)
-
+        vm.showDataBeach(idPlaya, v)
         vm.showButtons(v, idPlaya)
 
         bAddToFav.setOnClickListener {
 
-            if(!vm.esFavorito(idPlaya)){
+            if (!vm.esFavorito(idPlaya)) {
                 //AGREGAR DTI A FAV
                 vm.addFavotite(idPlaya)
                 vm.favAdded(v, requireContext())
-            }else{
+            } else {
                 vm.favInList(v, requireContext())
             }
         }
 
         bRemoveFav.setOnClickListener {
 
-            if(vm.esFavorito(idPlaya)){
+            if (vm.esFavorito(idPlaya)) {
                 vm.removeFavorite(idPlaya)
                 vm.favRemoved(v, requireContext())
-            }else{
+            } else {
                 vm.dtiNotInList(v, requireContext())
             }
         }
 
+        btnMap.setOnClickListener {
 
-      btnHome.setOnClickListener {
+            var action = BeachFragmentDirections.actionBeachFragmentToMapsFragment(geo, nombre)
+            v.findNavController().navigate(action)
+        }
 
-          activity?.onBackPressed()
 
-        //  v.findNavController().navigate(R.id.action_beachFragment_to_homeFragment)
-
-      }
-
+        var action = BeachFragmentDirections.actionBeachFragmentToHomeFragment()
+        val callBack = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                v.findNavController().navigate(action)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callBack)
     }
-
 }

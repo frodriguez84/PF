@@ -25,13 +25,16 @@
         <entry key="..\:/Users/alepa/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/list_popup_window_item.xml" value="0.2548611111111111" />
         <entry key="..\:/Users/alepa/AndroidStudioProjects/ProyectoFinal/app/src/main/res/menu/bottom_bar.xml" value="0.34739583333333335" />
         <entry key="..\:/Users/alepa/AndroidStudioProjects/ProyectoFinal/app/src/main/res/xml/root_preferences.xml" value="0.34739583333333335" />
-        <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/formulario_fragment.xml" value="0.209375" />
-        <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_beach.xml" value="0.209375" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/contacto_fragment.xml" value="0.209375" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/formulario_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_beach.xml" value="0.33" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_edit_profile.xml" value="0.209375" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_favoritos.xml" value="0.209375" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_maps.xml" value="0.209375" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/fragment_perfil.xml" value="0.209375" />
         <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/item_favoritos.xml" value="0.209375" />
+        <entry key="..\:/Users/ferna/AndroidStudioProjects/ProyectoFinal/app/src/main/res/layout/map_fragment.xml" value="0.209375" />
       </map>
     </option>
   </component>

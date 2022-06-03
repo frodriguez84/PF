@@ -24,8 +24,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:textStyle="italic"
-            android:text="En que medio de trasporte llego?"/>
+            android:text="En que medio de trasporte llego?"
+            android:textAlignment="center"
+            android:textStyle="italic" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
@@ -42,12 +43,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:textStyle="italic"
-            android:text="Vino sol@, en familia o en pareja, con amig@s?"/>
+            android:text="Vino sol@, en familia o en pareja, con amig@s?"
+            android:textAlignment="center"
+            android:textStyle="italic" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
@@ -65,12 +68,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:textStyle="italic"
-            android:text="Indiquenos de donde vino (Provincia - Localidad)"/>
+            android:text="Indiquenos de donde vino (Provincia - Localidad)"
+            android:textAlignment="center"
+            android:textStyle="italic" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
@@ -88,12 +93,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:textStyle="italic"
-            android:text="Por cuanto tiempo se queda?"/>
+            android:text="Por cuanto tiempo se queda?"
+            android:textAlignment="center"
+            android:textStyle="italic" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp" />

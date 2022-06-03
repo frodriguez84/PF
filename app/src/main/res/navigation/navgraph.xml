@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_beachFragment"
             app:destination="@id/beachFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_contactoFragment"
+            app:destination="@id/contactoFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritosFragment"
@@ -59,6 +62,12 @@
         <argument
             android:name="dti"
             app:argType="string" />
+        <action
+            android:id="@+id/action_beachFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_beachFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/recuMailFragment"
@@ -75,4 +84,21 @@
         android:name="com.example.proyectofinal.fragments.FormularioFragment"
         android:label="formulario_fragment"
         tools:layout="@layout/formulario_fragment" />
+    <fragment
+        android:id="@+id/contactoFragment"
+        android:name="com.example.proyectofinal.fragments.ContactoFragment"
+        android:label="contacto_fragment"
+        tools:layout="@layout/contacto_fragment" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.proyectofinal.fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <argument
+            android:name="geo"
+            app:argType="com.example.proyectofinal.entities.Geopoint" />
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+    </fragment>
 </navigation>

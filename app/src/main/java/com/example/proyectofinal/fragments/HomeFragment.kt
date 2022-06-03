@@ -1,12 +1,9 @@
 package com.example.proyectofinal.fragments
 
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -18,14 +15,9 @@ import com.example.proyectofinal.entities.Dti
 import com.example.proyectofinal.entities.RestEngine
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.userBeachSelect
-import com.example.proyectofinal.entities.UserRepository.userMailLogin
 import com.example.proyectofinal.viewmodels.HomeViewModel
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -41,24 +33,22 @@ class HomeFragment : Fragment() {
     private val vm: HomeViewModel by viewModels()
 
     private val db = FirebaseFirestore.getInstance()
-    private var dtiNames = arrayListOf<String>()
-    private lateinit var mapBeach: MapView
     private lateinit var listPopupWindowButton: Button
     private lateinit var pb: ProgressBar
     private lateinit var bOut: Button
+    private lateinit var bContacto: Button
     private lateinit var goBeachButton: Button
     private lateinit var listPopupWindow: ListPopupWindow
     private var dtiDocument: String = "1"
-    private lateinit var playa: String
-
-    private var ListDtiNombres = mutableListOf<String>()
+    private var listDtiNombres = mutableListOf<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_home, container, false)
 
+        bContacto = v.findViewById(R.id.btnContacto)
         bOut = v.findViewById(R.id.btnOut)
         listPopupWindowButton = v.findViewById(R.id.list_popup_button)
         goBeachButton = v.findViewById(R.id.goBeachBtn)
@@ -73,6 +63,11 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
         GlobalScope.launch(Dispatchers.Main) {
 
             pb.visibility = View.VISIBLE
@@ -81,15 +76,10 @@ class HomeFragment : Fragment() {
             pb.visibility = View.GONE
         }
 
-    }
-
-    override fun onStart() {
-        super.onStart()
-
         listPopupWindow.anchorView = listPopupWindowButton
 
         val adapter =
-            ArrayAdapter(requireContext(), R.layout.list_popup_window_item, ListDtiNombres)
+            ArrayAdapter(requireContext(), R.layout.list_popup_window_item, listDtiNombres)
         listPopupWindow.setAdapter(adapter)
 
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
@@ -102,7 +92,6 @@ class HomeFragment : Fragment() {
 
         listPopupWindowButton.setOnClickListener { listPopupWindow.show() }
 
-
         goBeachButton.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToBeachFragment(dtiDocument)
             v.findNavController().navigate(action)
@@ -114,6 +103,11 @@ class HomeFragment : Fragment() {
             FirebaseAuth.getInstance().signOut()
             vm.cleanLogUser()
             activity?.onBackPressed()
+        }
+
+        bContacto.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToContactoFragment()
+            v.findNavController().navigate(action)
         }
     }
 
@@ -132,7 +126,7 @@ class HomeFragment : Fragment() {
                     ListDti = r
                 }
 
-                Toast.makeText(requireContext(), "DTIs Cargados", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "DTIs Cargados", Toast.LENGTH_SHORT).show()
                 getDtiNames(ListDti)
                 vm.showData(userBeachSelect.toInt(), v)
             }
@@ -146,11 +140,10 @@ class HomeFragment : Fragment() {
     fun getDtiNames(list: List<Dti>): MutableList<String> {
 
         for (l in list) {
-            ListDtiNombres.addAll(listOf(l.nombre))
+            listDtiNombres.addAll(listOf(l.nombre))
         }
-        return ListDtiNombres
+        return listDtiNombres
     }
-
 
 }
 

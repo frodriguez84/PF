@@ -114,37 +114,46 @@
         app:layout_constraintTop_toTopOf="@+id/pcaforo" />
 
     <Button
+        android:id="@+id/btnContacto"
+        android:layout_width="0dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/purple_700"
+        android:text="contacto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goBeachBtn" />
+
+    <Button
         android:id="@+id/goBeachBtn"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="30dp"
         android:background="@color/purple_700"
         android:text="Explorar DTI"
-        app:layout_constraintBottom_toTopOf="@+id/btnOut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pctemp"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/pctemp" />
 
     <Button
         android:id="@+id/btnOut"
         android:layout_width="0dp"
         android:layout_height="41dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="8dp"
         android:background="@color/purple_700"
         android:text="Cerrar sesion"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pctemp"
-        app:layout_constraintVertical_bias="0.665" />
+        app:layout_constraintTop_toBottomOf="@+id/btnContacto" />
 
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/pctemp"

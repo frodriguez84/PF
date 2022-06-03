@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.proyectofinal.fragments
 
 import android.os.Bundle
@@ -17,7 +19,7 @@ class EditProfileFragment : Fragment() {
     private val vm : EditProfileViewModel by viewModels()
 
     private lateinit var saveBtn : Button
-    private lateinit var backBtn : Button
+    //private lateinit var backBtn : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +28,7 @@ class EditProfileFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_edit_profile, container, false)
 
         saveBtn = v.findViewById(R.id.editBtn)
-        backBtn = v.findViewById(R.id.btnBackP)
+        //backBtn = v.findViewById(R.id.btnBackP)
         return v
     }
 
@@ -38,11 +40,12 @@ class EditProfileFragment : Fragment() {
         saveBtn.setOnClickListener {
             vm.saveData(v)
             vm.saveDataMessage(v, requireContext())
-        }
-
-        backBtn.setOnClickListener {
             activity?.onBackPressed()
         }
+
+        /*backBtn.setOnClickListener {
+            activity?.onBackPressed()
+        }*/
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

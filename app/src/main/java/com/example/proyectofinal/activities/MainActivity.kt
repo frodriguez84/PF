@@ -32,12 +32,13 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                 R.id.beachFragment -> hideBottomBar()
                 R.id.recuMailFragment -> hideBottomBar()
                 R.id.editProfileFragment -> hideBottomBar()
+                R.id.contactoFragment -> hideBottomBar()
+                R.id.formularioFragment -> hideBottomBar()
+                R.id.mapsFragment -> hideBottomBar()
                 else -> showBottomBar()
             }
 
         }
-
-
 
     }
 

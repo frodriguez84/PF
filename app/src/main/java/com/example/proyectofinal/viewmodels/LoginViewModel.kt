@@ -22,16 +22,16 @@ class LoginViewModel : ViewModel() {
                 "favs" to mutableListOf<Favoritos>()
             ))
         Toast.makeText(context, "Registro de usuario exitoso, inicie sesion", Toast.LENGTH_SHORT).show()
-        //Snackbar.make(v, "Registro exitoso, inicie sesion", Snackbar.LENGTH_SHORT).show()
+
     }
     fun registerFail(context: Context){
-        Toast.makeText(context, "se ha producido un error registrando al usuaio", Toast.LENGTH_SHORT).show()
-        //Snackbar.make(v, "Error:" + "se ha producido un error registrando al usuaio", Snackbar.LENGTH_SHORT).show()
+        Toast.makeText(context, "se ha producido un error registrando al usuario", Toast.LENGTH_SHORT).show()
+
     }
 
     fun loginFail(context: Context){
-        Toast.makeText(context, "USUARIO or PASSWORD incorrecto", Toast.LENGTH_SHORT).show()
-        //Snackbar.make(v, "USUARIO or PASSWORD incorrecto", Snackbar.LENGTH_SHORT).show()
+        Toast.makeText(context, "USUARIO o PASSWORD incorrecto", Toast.LENGTH_SHORT).show()
+
 
     }
 
