@@ -19,16 +19,13 @@ import com.google.firebase.auth.FirebaseAuth
 
 class RecuMailFragment : Fragment() {
 
-    private lateinit var v : View
+    private lateinit var v: View
+    private val vm: RecuMailViewModel by viewModels()
 
-    private  val vm: RecuMailViewModel by viewModels()
-
-    private lateinit var mail : TextView
-    private lateinit var btnEnviar : Button
-    private lateinit var btnVolver : Button
-    private lateinit var emailRecu : String
-
-
+    private lateinit var mail: TextView
+    private lateinit var btnEnviar: Button
+    private lateinit var btnVolver: Button
+    private lateinit var emailRecu: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,24 +40,14 @@ class RecuMailFragment : Fragment() {
         return v
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-    }
-
     override fun onStart() {
         super.onStart()
+        val c = requireContext()
 
         btnEnviar.setOnClickListener {
-
             emailRecu = mail.text.toString()
-
-            if(!emailRecu.isEmpty()){
-                vm.resetPassword(emailRecu , v)
-
-            } else {
-                Toast.makeText(context , "Debe ingresar el mail" , Toast.LENGTH_SHORT).show()
-            }
+            if (!emailRecu.isEmpty()) {  vm.resetPassword(emailRecu, v, c) }
+            else { vm.mailEmpty(c) }
 
         }
 

@@ -46,11 +46,7 @@ class FavoritosFragment : Fragment() {
 
         }
         vm.recyclerFavs.adapter = adapter
-
     }
-
-
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }
