@@ -3,6 +3,7 @@ package com.example.proyectofinal.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -22,16 +23,15 @@ class FavAdapter(
 
     class FavHolder(v : View) : RecyclerView.ViewHolder(v){
 
-        var view: View
-
-        init{
-            this.view = v
-        }
+        var view: View = v
 
         fun setName (name: String){
-            var txtName : TextView = view.findViewById( R.id.txtItemName)
+            var txtName : TextView = view.findViewById(R.id.txtItemName)
             txtName.text = name
         }
+        /*fun getImageView () : ImageView {
+            return view.findViewById(R.id.imgItem)
+        }*/
 
         fun getCard () : CardView {
             return view.findViewById(R.id.card)

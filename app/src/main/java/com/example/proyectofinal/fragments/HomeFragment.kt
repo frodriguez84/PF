@@ -1,6 +1,9 @@
 package com.example.proyectofinal.fragments
 
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.proyectofinal.R
@@ -85,12 +89,14 @@ class HomeFragment : Fragment() {
             FirebaseAuth.getInstance().signOut()
             vm.cleanLogUser()
             activity?.onBackPressed()
+
         }
 
         bContacto.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToContactoFragment()
             v.findNavController().navigate(action)
         }
+
     }
 
 }

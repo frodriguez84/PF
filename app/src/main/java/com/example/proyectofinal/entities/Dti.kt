@@ -1,6 +1,8 @@
 package com.example.proyectofinal.entities
 
+import android.media.Image
 import android.os.Parcelable
+import android.widget.ImageView
 import kotlinx.parcelize.Parcelize
 import com.google.gson.annotations.SerializedName
 
@@ -20,6 +22,7 @@ data class Dti (
     var temperatura : String ,
     var velViento : String ,
     var uv : String,
+    var image: Int
 
 
 ) : Parcelable {

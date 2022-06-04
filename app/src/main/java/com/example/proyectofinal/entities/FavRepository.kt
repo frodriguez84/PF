@@ -16,6 +16,7 @@ class FavRepository {
         db.collection("users").document(userMailLogin).get().addOnSuccessListener {
 
             listOfFavs = it.get("favs") as ArrayList<String>
+
         }
     }
 }

@@ -26,11 +26,8 @@ class BeachFragment : Fragment() {
 
     private val vm: BeachViewModel by viewModels()
 
-    private lateinit var btnHome: ImageButton
-    private lateinit var btnMap: Button
-
     private lateinit var idPlaya: String
-
+    private lateinit var btnMap: Button
     private lateinit var bAddToFav: Button
     private lateinit var bRemoveFav: Button
 
@@ -42,7 +39,6 @@ class BeachFragment : Fragment() {
         v = inflater.inflate(R.layout.fragment_beach, container, false)
 
         btnMap = v.findViewById(R.id.btnMap)
-        btnHome = v.findViewById(R.id.btnVolver)
         bAddToFav = v.findViewById(R.id.btnAddFavoritos)
         bRemoveFav = v.findViewById(R.id.btnRemoveFavoritos)
 
@@ -69,6 +65,7 @@ class BeachFragment : Fragment() {
             if (!vm.esFavorito(idPlaya)) {
                 //AGREGAR DTI A FAV
                 vm.addFavotite(idPlaya)
+                activity?.onBackPressed()
                 vm.favAdded(v, requireContext())
             } else {
                 vm.favInList(v, requireContext())
@@ -91,11 +88,6 @@ class BeachFragment : Fragment() {
             var action = BeachFragmentDirections.actionBeachFragmentToMapsFragment(geo, nombre)
             v.findNavController().navigate(action)
         }
-
-        btnHome.setOnClickListener {
-            activity?.onBackPressed()
-        }
-
 
     }
 }
