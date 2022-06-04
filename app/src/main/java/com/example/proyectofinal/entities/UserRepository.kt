@@ -6,5 +6,8 @@ object UserRepository {
     public var userBeachSelect : String = "0"
     public var listOfFavs : MutableList<String> = mutableListOf()
     public var ListDti = listOf<Dti>()
+    public var userLatitud =""
+    public var userLongitud =""
+    public var ListDtiNombres : MutableList<String> = mutableListOf()
 
 }

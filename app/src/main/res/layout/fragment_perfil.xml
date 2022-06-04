@@ -74,7 +74,7 @@
         android:id="@+id/nameEdit2"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="Nombre"
@@ -83,7 +83,7 @@
         android:textAlignment="gravity"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
     <TextView
         android:id="@+id/textView6"
@@ -160,10 +160,45 @@
         android:layout_width="114dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="20dp"
         android:text="Nombre: "
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="327dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="181dp"
+        android:text="Perfil de Usuario"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="149dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ciudades"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="142dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="18dp"
+        android:src="@drawable/reddti"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

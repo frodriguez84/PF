@@ -1,23 +1,23 @@
 package com.example.proyectofinal.viewmodels
 
+import android.content.Context
+import android.location.Location
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.listOfFavs
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+
 import me.tankery.lib.circularseekbar.CircularSeekBar
-import kotlin.concurrent.timerTask
+
 
 class HomeViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
-
-    //private lateinit var mailText : TextView
 
     private lateinit var beachName : TextView
     private lateinit var pcAforo : CircularSeekBar
@@ -29,63 +29,14 @@ class HomeViewModel : ViewModel() {
     private lateinit var pcPark : CircularSeekBar
     private lateinit var parkView: TextView
 
+    private lateinit var listPopupWindowButton: Button
+    private lateinit var listPopupWindow: ListPopupWindow
+
+    private var dtiDocument: String = "0"
+
     private var aforo : Float = 0F
     private var temp : Float = 0F
     private var park : Float = 0F
-
-   // private lateinit var nameUser : String
-
-    private val dtiNames = arrayListOf<String>()
-
-
-   /* fun showData(dti : String , v : View) {
-
-       beachName = v.findViewById(R.id.nameBeachView)
-        aforoView = v.findViewById(R.id.aforoTextView)
-        pcAforo = v.findViewById(R.id.pcaforo)
-
-        tempView = v.findViewById(R.id.tempTextView)
-        pcTemp = v.findViewById(R.id.pctemp)
-
-        parkView = v.findViewById(R.id.parkTextView)
-        pcPark = v.findViewById(R.id.pcpark)
-
-
-        db.collection("dtis").document(dti).get().addOnSuccessListener {
-            pcAforo.max = (it.get("maxAforo").toString()).toFloat()
-            beachName.text = it.get("nombre").toString()
-            aforo = (it.get("aforo").toString()).toFloat()
-            temp =  (it.get("temperatura").toString()).toFloat()
-
-            pcPark.max = (it.get("maxPark").toString()).toFloat()
-            park = (it.get("parking").toString()).toFloat()
-
-            aforoView.text = it.get("aforo").toString() + " Personas"
-            pcAforo.progress = aforo
-            tempView.text = it.get("temperatura").toString()+"°"
-            pcTemp.progress = temp
-            parkView.text = it.get("parking").toString()+" Ocupados"
-            pcPark.progress = park
-
-        }
-    }*/
-
-  /*  fun userData(v: View) {
-
-        mailText = v.findViewById(R.id.textView)
-
-        db.collection("users").document(UserRepository.userMailLogin).get().addOnSuccessListener {
-            nameUser = it.get("nombre").toString()
-
-            if (nameUser == "null"){
-                mailText.text = "Completar datos"
-
-            } else {
-                mailText.text = nameUser
-            }
-        }
-
-    }*/
 
     fun populateFavs() {
         db.collection("users").document(userMailLogin).get().addOnSuccessListener {
@@ -93,24 +44,31 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-  /*suspend fun searchId(playa: String , v: View): String {
-        var id : String=""
-        var nombrePlaya = ""
+    fun showDti(v: View, context: Context){
+        listPopupWindowButton = v.findViewById(R.id.list_popup_button)
+        listPopupWindow = ListPopupWindow(context, null, androidx.transition.R.attr.listPopupWindowStyle)
 
-        db.collection("dtis").whereEqualTo("nombre", playa).get().addOnSuccessListener {
-                documents ->
-            for (document in documents){
-                nombrePlaya =document.get("nombre").toString()
-                if (nombrePlaya == playa){
-                    id = document.get("id").toString()
-                }
-            }
+        listPopupWindow.anchorView = listPopupWindowButton
+
+        val adapter =
+            ArrayAdapter(context, R.layout.list_popup_window_item, UserRepository.ListDtiNombres)
+        listPopupWindow.setAdapter(adapter)
+
+        listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
+
+            showData(position, v)
+            dtiDocument = position.toString()
+            UserRepository.userBeachSelect = position.toString()
+            listPopupWindow.dismiss()
         }
-       return id
 
+        listPopupWindowButton.setOnClickListener { listPopupWindow.show() }
+    }
 
+    fun getDtiDocument(): String{
+        return dtiDocument
+    }
 
-    }*/
 
     fun showData(pos: Int, v: View) {
 
@@ -124,7 +82,7 @@ class HomeViewModel : ViewModel() {
         parkView = v.findViewById(R.id.parkTextView)
         pcPark = v.findViewById(R.id.pcpark)
 
-        var dti =  ListDti[pos]
+        val dti =  ListDti[pos]
 
 
         if (dti != null){
@@ -152,6 +110,33 @@ class HomeViewModel : ViewModel() {
         userMailLogin = ""
     }
 
+    fun dtiCercano(v: View){
+
+        var dtiCerca = 0
+        var distEntreDTIyUser = 9999999999999999F
+
+        for ((position, dti) in ListDti.withIndex()){
+
+            val locationA = Location("punto A")
+
+            locationA.latitude = UserRepository.userLatitud.toDouble()
+            locationA.longitude = UserRepository.userLongitud.toDouble()
+
+            val locationB = Location("punto B")
+
+            locationB.latitude = dti.geopoint.latitud.toDouble()
+            locationB.longitude = dti.geopoint.longitud.toDouble()
+
+            val distance = locationA.distanceTo(locationB)
+
+            if (distance < distEntreDTIyUser ){
+                dtiCerca = position
+                distEntreDTIyUser = distance
+            }
+        }
+        dtiDocument = dtiCerca.toString()
+        showData(dtiCerca , v)
+    }
 
 }
 

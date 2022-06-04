@@ -6,30 +6,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.viewModels
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.FormRepository.condicion
+import com.example.proyectofinal.entities.FormRepository.dias
+import com.example.proyectofinal.entities.FormRepository.familia
+import com.example.proyectofinal.entities.FormRepository.provincia
+import com.example.proyectofinal.entities.FormRepository.transporte
+import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.viewmodels.FormularioViewModel
 
 class FormularioFragment : Fragment() {
 
     private lateinit var v: View
     private val vm: FormularioViewModel by viewModels()
-    private lateinit var bSave : Button
-    private lateinit var bBack : Button
-    private lateinit var userLog : TextView
+    private lateinit var bSave: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v =  inflater.inflate(R.layout.formulario_fragment, container, false)
+        v = inflater.inflate(R.layout.formulario_fragment, container, false)
 
         bSave = v.findViewById(R.id.btnGuardar)
-        bBack = v.findViewById(R.id.btnAtras)
-        userLog = v.findViewById(R.id.userLog)
 
         return v
     }
@@ -37,18 +37,25 @@ class FormularioFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        bBack.setOnClickListener {
-            activity?.onBackPressed()
-        }
+        vm.showDti(v, requireContext())
+        vm.showCondicion(v, requireContext())
+        vm.showTransporte(v, requireContext())
+        vm.showFamilia(v, requireContext())
+        vm.showProvincia(v, requireContext())
+        vm.showDias(v, requireContext())
 
         bSave.setOnClickListener {
-            Toast.makeText(requireContext(),"Los datos se han guardado", Toast.LENGTH_SHORT)
+
+            if (vm.formOk()) {
+                vm.saveForm()
+                vm.messageSaveFormOk(requireContext())
+                activity?.onBackPressed()
+
+            } else {
+                vm.messageSaveFormFailed(requireContext())
+            }
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
 
 }

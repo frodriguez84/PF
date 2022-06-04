@@ -9,21 +9,21 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.proyectofinal.R
 import com.example.proyectofinal.viewmodels.ContactoViewModel
+import com.example.proyectofinal.viewmodels.HomeViewModel
 
 
 class ContactoFragment : Fragment() {
 
+    private val vm: ContactoViewModel by viewModels()
     private lateinit var btnCiudades : Button
     private lateinit var btnReddit : Button
     private lateinit var btnMail : Button
-    private lateinit var viewModel: ContactoViewModel
 
     private lateinit var consulta : TextView
-
-
     private lateinit var v : View
 
     private val url_ciudades = "https://ciudadesdelfuturo.org.ar/"
@@ -77,8 +77,7 @@ class ContactoFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ContactoViewModel::class.java)
-        // TODO: Use the ViewModel
+
     }
 
 }

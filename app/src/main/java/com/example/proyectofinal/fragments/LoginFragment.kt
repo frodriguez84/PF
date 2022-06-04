@@ -22,17 +22,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 @Suppress("DEPRECATION")
 class LoginFragment : Fragment() {
 
-    private val db = FirebaseFirestore.getInstance()
-
     private val vm: LoginViewModel by viewModels()
-
-    private lateinit var email : TextView
-    private lateinit var pass : TextView
     private lateinit var btnLog : Button
     private lateinit var btnReg : Button
     private lateinit var btnRecu : Button
-    private lateinit var mail : String
-
     private lateinit var v : View
 
     override fun onCreateView(
@@ -41,8 +34,6 @@ class LoginFragment : Fragment() {
     ): View {
          v = inflater.inflate(R.layout.fragment_login, container, false)
 
-        email = v.findViewById(R.id.emailText)
-        pass = v.findViewById(R.id.passText)
         btnLog = v.findViewById(R.id.logBtn)
         btnReg = v.findViewById(R.id.regBtn)
         btnRecu = v.findViewById(R.id.btnRecuMail)
@@ -54,44 +45,8 @@ class LoginFragment : Fragment() {
         super.onStart()
 
         val c = requireContext()
-        btnReg.setOnClickListener {
-
-
-            if (email.text.isNotEmpty() && pass.text.isNotEmpty()) {
-                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(
-                        email.text.toString(),
-                        pass.text.toString()
-                    ).addOnCompleteListener {
-
-                        if (it.isSuccessful) {
-                            userMailLogin = email.text.toString()
-                            vm.registerOK(c)
-                        } else {
-                            vm.registerFail(c)
-                        }
-                    }
-            } else {
-                    vm.registerFail(c)
-            }
-        }
-
-        btnLog.setOnClickListener {
-            if (email.text.isNotEmpty() && pass.text.isNotEmpty()) {
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(
-                    email.text.toString(),
-                    pass.text.toString()
-                ).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        userMailLogin = email.text.toString()
-                        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-                        v.findNavController().navigate(action)
-                        vm.clearFields(email,pass)
-                    } else {
-                        vm.loginFail(c)
-                    }
-                }
-            }
-        }
+        btnReg.setOnClickListener {vm.register(v,c) }
+        btnLog.setOnClickListener { vm.login(v, c) }
 
         btnRecu.setOnClickListener {
             val action = LoginFragmentDirections.actionLoginFragmentToRecuMailFragment()
