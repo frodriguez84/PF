@@ -92,8 +92,8 @@ class HomeFragment : Fragment() {
 
         //LOGOUT
         bOut.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            vm.cleanLogUser()
+           // FirebaseAuth.getInstance().signOut()
+           //vm.cleanLogUser()
             myFragment.show(requireActivity().supportFragmentManager, "hola")
             //activity?.onBackPressed()
 
@@ -104,18 +104,13 @@ class HomeFragment : Fragment() {
             v.findNavController().navigate(action)
         }
 
-        /*val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+        //val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed(){
                 myFragment.show(requireActivity().supportFragmentManager, "hola")
-                if(aceptButton.isPressed){
-                    findNavController().navigate(action)
-                } else if(cancelButton.isPressed){
-
-                }
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)*/
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
 
     }

@@ -17,7 +17,7 @@
             android:id="@+id/textView28"
             android:layout_width="match_parent"
             android:layout_height="43dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="30dp"
             android:text="Realmente desea salir de la app ?"
             android:textAlignment="center"
             android:textSize="20sp"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
             android:text="SI" />
 
         <Button
@@ -36,7 +36,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
             android:text="NO" />
+
+        <TextView
+            android:id="@+id/mailUs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
