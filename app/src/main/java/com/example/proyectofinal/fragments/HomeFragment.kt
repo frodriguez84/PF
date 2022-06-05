@@ -16,11 +16,10 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.proyectofinal.R
-import com.example.proyectofinal.entities.APIService
-import com.example.proyectofinal.entities.Dti
-import com.example.proyectofinal.entities.RestEngine
-import com.example.proyectofinal.entities.UserRepository
+import com.example.proyectofinal.activities.MainActivity
+import com.example.proyectofinal.entities.*
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.ListDtiNombres
 import com.example.proyectofinal.entities.UserRepository.userBeachSelect
@@ -43,6 +42,10 @@ class HomeFragment : Fragment() {
     private lateinit var bOut: Button
     private lateinit var bContacto: Button
     private lateinit var goBeachButton: Button
+    private lateinit var aceptButton : Button
+    private lateinit var cancelButton : Button
+    var myFragment = MyFragment()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +61,8 @@ class HomeFragment : Fragment() {
     ): View {
         v = inflater.inflate(R.layout.fragment_home, container, false)
 
-
+        var aceptButton = v.findViewById<Button>(R.id.aceptBtn)
+        var cancelButton = v.findViewById<Button>(R.id.cancelBtn)
         bContacto = v.findViewById(R.id.btnContacto)
         bOut = v.findViewById(R.id.btnOut)
         goBeachButton = v.findViewById(R.id.goBeachBtn)
@@ -69,6 +73,8 @@ class HomeFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val c = requireContext()
+
+
 
         if(userLatitud.isNotBlank() && userLongitud.isNotBlank()){
             vm.dtiCercano(v)
@@ -88,7 +94,8 @@ class HomeFragment : Fragment() {
         bOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             vm.cleanLogUser()
-            activity?.onBackPressed()
+            myFragment.show(requireActivity().supportFragmentManager, "hola")
+            //activity?.onBackPressed()
 
         }
 
@@ -96,6 +103,20 @@ class HomeFragment : Fragment() {
             val action = HomeFragmentDirections.actionHomeFragmentToContactoFragment()
             v.findNavController().navigate(action)
         }
+
+        /*val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed(){
+                myFragment.show(requireActivity().supportFragmentManager, "hola")
+                if(aceptButton.isPressed){
+                    findNavController().navigate(action)
+                } else if(cancelButton.isPressed){
+
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)*/
+
 
     }
 
