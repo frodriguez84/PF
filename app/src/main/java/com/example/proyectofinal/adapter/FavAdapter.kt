@@ -19,19 +19,14 @@ class FavAdapter(
 
 ) : RecyclerView.Adapter<FavAdapter.FavHolder>() {
 
-
-
     class FavHolder(v : View) : RecyclerView.ViewHolder(v){
 
         var view: View = v
 
         fun setName (name: String){
-            var txtName : TextView = view.findViewById(R.id.txtItemName)
+            val txtName : TextView = view.findViewById(R.id.txtItemName)
             txtName.text = name
         }
-        /*fun getImageView () : ImageView {
-            return view.findViewById(R.id.imgItem)
-        }*/
 
         fun getCard () : CardView {
             return view.findViewById(R.id.card)

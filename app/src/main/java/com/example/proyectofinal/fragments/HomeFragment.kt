@@ -42,8 +42,7 @@ class HomeFragment : Fragment() {
     private lateinit var bOut: Button
     private lateinit var bContacto: Button
     private lateinit var goBeachButton: Button
-    private lateinit var aceptButton : Button
-    private lateinit var cancelButton : Button
+
     var myFragment = MyFragment()
 
 
@@ -61,8 +60,6 @@ class HomeFragment : Fragment() {
     ): View {
         v = inflater.inflate(R.layout.fragment_home, container, false)
 
-        var aceptButton = v.findViewById<Button>(R.id.aceptBtn)
-        var cancelButton = v.findViewById<Button>(R.id.cancelBtn)
         bContacto = v.findViewById(R.id.btnContacto)
         bOut = v.findViewById(R.id.btnOut)
         goBeachButton = v.findViewById(R.id.goBeachBtn)
@@ -92,11 +89,7 @@ class HomeFragment : Fragment() {
 
         //LOGOUT
         bOut.setOnClickListener {
-           // FirebaseAuth.getInstance().signOut()
-           //vm.cleanLogUser()
             myFragment.show(requireActivity().supportFragmentManager, "hola")
-            //activity?.onBackPressed()
-
         }
 
         bContacto.setOnClickListener {
@@ -104,7 +97,6 @@ class HomeFragment : Fragment() {
             v.findNavController().navigate(action)
         }
 
-        //val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed(){
                 myFragment.show(requireActivity().supportFragmentManager, "hola")

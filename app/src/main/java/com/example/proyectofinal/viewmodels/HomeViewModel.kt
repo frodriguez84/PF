@@ -1,11 +1,15 @@
 package com.example.proyectofinal.viewmodels
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.location.Location
 import android.view.View
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.MyFragment
 import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.listOfFavs
@@ -51,7 +55,6 @@ class HomeViewModel : ViewModel() {
 
         listPopupWindow.anchorView = listPopupWindowButton
 
-
         val adapter =
             ArrayAdapter(context, R.layout.list_popup_window_item, UserRepository.ListDtiNombres)
         listPopupWindow.setAdapter(adapter)
@@ -67,11 +70,8 @@ class HomeViewModel : ViewModel() {
 
         listPopupWindowButton.setOnClickListener {
 
-            if (listPopupWindow.isShowing) {
-                listPopupWindow.dismiss()
-            } else {
-                listPopupWindow.show()
-            }
+            listPopupWindow.show()
+
         }
     }
 
@@ -80,6 +80,7 @@ class HomeViewModel : ViewModel() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     fun showData(pos: Int, v: View) {
 
         beachName = v.findViewById(R.id.nameBeachView)
@@ -95,25 +96,21 @@ class HomeViewModel : ViewModel() {
         val dti = ListDti[pos]
 
 
-        if (dti != null) {
-            pcAforo.max = dti.maxAforo.toFloat()
-            beachName.text = dti.nombre
-            aforo = dti.aforo.toFloat()
-            temp = dti.temperatura.toFloat()
+        pcAforo.max = dti.maxAforo.toFloat()
+        beachName.text = dti.nombre
+        aforo = dti.aforo.toFloat()
+        temp = dti.temperatura.toFloat()
 
-            pcPark.max = dti.maxPark.toFloat()
-            park = dti.parking.toFloat()
+        pcPark.max = dti.maxPark.toFloat()
+        park = dti.parking.toFloat()
 
-            aforoView.text = dti.aforo + " Personas"
-            pcAforo.progress = aforo
-            tempView.text = dti.temperatura + "°"
-            pcTemp.progress = temp
-            parkView.text = dti.parking + " Ocupados"
-            pcPark.progress = park
+        aforoView.text = dti.aforo + " Personas"
+        pcAforo.progress = aforo
+        tempView.text = dti.temperatura + "°"
+        pcTemp.progress = temp
+        parkView.text = dti.parking + " Ocupados"
+        pcPark.progress = park
 
-        } else {
-            beachName.text = "Seleccione una playa"
-        }
     }
 
     fun cleanLogUser() {
@@ -147,7 +144,6 @@ class HomeViewModel : ViewModel() {
         dtiDocument = dtiCerca.toString()
         showData(dtiCerca, v)
     }
-
 
 
 }
