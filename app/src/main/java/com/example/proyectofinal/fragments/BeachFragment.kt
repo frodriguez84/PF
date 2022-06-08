@@ -14,6 +14,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.Geo
 import com.example.proyectofinal.entities.Geopoint
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.viewmodels.BeachViewModel
@@ -51,10 +52,11 @@ class BeachFragment : Fragment() {
         idPlaya = BeachFragmentArgs.fromBundle(requireArguments()).dti
 
         val playa = ListDti[idPlaya.toInt()]
-        val lat = playa.geopoint.latitud
-        val long = playa.geopoint.longitud
-        val geo = Geopoint(lat, long)
-        val nombre = playa.nombre
+        val lat = playa.location.coordinates[0]
+        val long = playa.location.coordinates[1]
+        //val geo = Geopoint(lat, long)
+        val geo = Geo(lat.toString(), long.toString())
+        val nombre = playa.name
 
 
         vm.showDataBeach(idPlaya, v)

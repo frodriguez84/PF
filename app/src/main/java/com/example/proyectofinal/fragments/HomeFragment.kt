@@ -6,6 +6,8 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.location.Location
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +45,7 @@ class HomeFragment : Fragment() {
     private lateinit var bContacto: Button
     private lateinit var goBeachButton: Button
 
+
     var myFragment = MyFragment()
 
 
@@ -71,39 +74,39 @@ class HomeFragment : Fragment() {
         super.onStart()
         val c = requireContext()
 
-
-
         if(userLatitud.isNotBlank() && userLongitud.isNotBlank()){
             vm.dtiCercano(v)
         }else{
-            Toast.makeText(c, "Error: Active la geolocalizacion para ver el Dti mas cercano", Toast.LENGTH_SHORT).show()
+            Toast.makeText(c, "Error: Active la geolocalizacion para ver el destino mas cercano", Toast.LENGTH_SHORT).show()
         }
 
         vm.showDti(v, c)
 
+        //Mostrar Destino
         goBeachButton.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToBeachFragment(vm.getDtiDocument())
             v.findNavController().navigate(action)
 
         }
 
-        //LOGOUT
+        //Logout
         bOut.setOnClickListener {
             myFragment.show(requireActivity().supportFragmentManager, "hola")
         }
 
+        //Boton Contacto
         bContacto.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToContactoFragment()
             v.findNavController().navigate(action)
         }
 
+        //Back Pressed
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed(){
                 myFragment.show(requireActivity().supportFragmentManager, "hola")
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
-
 
     }
 

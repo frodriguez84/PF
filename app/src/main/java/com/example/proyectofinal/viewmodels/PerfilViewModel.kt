@@ -3,8 +3,11 @@ package com.example.proyectofinal.viewmodels
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModel
 import com.example.proyectofinal.R
+import com.example.proyectofinal.activities.MainActivity
+import com.example.proyectofinal.entities.MyFragment
 import com.example.proyectofinal.entities.UserRepository
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -12,16 +15,17 @@ class PerfilViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
 
-    private lateinit var nameText : TextView
-    private lateinit var lastNameText : TextView
-    private lateinit var telText : TextView
-    private lateinit var provText : TextView
-    private lateinit var cityText : TextView
-    private lateinit var name : String
-    private lateinit var last : String
-    private lateinit var tel : String
-    private lateinit var prov : String
-    private lateinit var ciu : String
+    private lateinit var nameText: TextView
+    private lateinit var lastNameText: TextView
+    private lateinit var telText: TextView
+    private lateinit var provText: TextView
+    private lateinit var cityText: TextView
+    private lateinit var name: String
+    private lateinit var last: String
+    private lateinit var tel: String
+    private lateinit var prov: String
+    private lateinit var ciu: String
+
 
     fun showData(v: View) {
 
@@ -33,7 +37,7 @@ class PerfilViewModel : ViewModel() {
 
         val docRef = db.collection("users").document(UserRepository.userMailLogin)
 
-        docRef.get().addOnCompleteListener{ document ->
+        docRef.get().addOnCompleteListener { document ->
             if (document != null) {
 
                 name = document.result.get("nombre").toString()
@@ -42,35 +46,32 @@ class PerfilViewModel : ViewModel() {
                 prov = document.result.get("provincia").toString()
                 ciu = document.result.get("ciudad").toString()
 
-                if (name != "null"){
+                if (name != "null") {
                     nameText.text = name
                 } else {
                     nameText.text = ""
                 }
-                if(last != "null") {
+                if (last != "null") {
                     lastNameText.text = last
                 } else {
                     lastNameText.text = ""
                 }
-                if(tel != "null") {
+                if (tel != "null") {
                     telText.text = tel
                 } else {
                     telText.text = ""
                 }
-                if(prov != "null") {
+                if (prov != "null") {
                     provText.text = prov
                 } else {
                     provText.text = ""
                 }
-                if(ciu != "null") {
+                if (ciu != "null") {
                     cityText.text = ciu
                 } else {
                     cityText.text = ""
                 }
             }
-
         }
-
     }
-
 }

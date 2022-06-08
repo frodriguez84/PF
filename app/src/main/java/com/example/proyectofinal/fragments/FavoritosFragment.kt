@@ -5,11 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyectofinal.R
 import com.example.proyectofinal.adapter.FavAdapter
+import com.example.proyectofinal.entities.MyFragment
 import com.example.proyectofinal.entities.UserRepository.listOfFavs
 import com.example.proyectofinal.viewmodels.FavoritosViewModel
 
@@ -21,6 +23,7 @@ class FavoritosFragment : Fragment() {
    private val vm: FavoritosViewModel by viewModels()
     lateinit var adapter: FavAdapter
     private lateinit var pos : String
+    var myFragment = MyFragment()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +49,18 @@ class FavoritosFragment : Fragment() {
 
         }
         vm.recyclerFavs.adapter = adapter
+
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed(){
+                myFragment.show(requireActivity().supportFragmentManager, "hola")
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
+
+
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
     }

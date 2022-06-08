@@ -45,7 +45,7 @@ class BeachViewModel : ViewModel() {
     private lateinit var velV: TextView
     private lateinit var altO: TextView
 
-    private var aforo: Float = 0F
+    private lateinit var aforo: String
     private var temp: Float = 0F
     private var park: Float = 0F
     private var uvs: Float = 0F
@@ -84,21 +84,21 @@ class BeachViewModel : ViewModel() {
         dirV = v.findViewById(R.id.windDirTV)
 
 
-        pcAforo.max = posDti.maxAforo.toFloat()
-        pcPark.max = posDti.maxPark.toFloat()
-        aforo = posDti.aforo.toFloat()
-        temp = posDti.temperatura.toFloat()
-        park = posDti.parking.toFloat()
+        pcAforo.max = 5000f
+        pcPark.max = posDti.maxParking
+        aforo = posDti.aforo
+        temp = posDti.temperatura
+        park = posDti.parking
         uvs = posDti.uv.toFloat()
 
-        nameView.text = posDti.nombre
-        aforoView.text = posDti.aforo + " Personas"
-        tempView.text = posDti.temperatura + "°"
-        parkView.text = posDti.parking + " Ocupados"
+        nameView.text = posDti.name
+        //aforoView.text = posDti.aforo + " Personas"
+        tempView.text = posDti.temperatura.toString() + "°"
+        parkView.text = posDti.parking.toString() + " Ocupados"
         bandera = posDti.bandera
         rayosUv = posDti.uv
 
-        altO.text = posDti.altOla + "mts"
+        altO.text = posDti.altOla.toString() + "mts"
         velV.text = posDti.velViento + "km/h"
         dirV.text = posDti.dirViento.uppercase()
 
@@ -144,7 +144,27 @@ class BeachViewModel : ViewModel() {
             "10" -> uvView.text = "10 - Muy Alto"
 
         }
-        pcAforo.progress = aforo
+        //pcAforo.progress = aforo
+        when(aforo){
+            "bajo"-> {
+                aforoView.text = "Bajo"
+                pcAforo.progress = 25F
+            }
+            "medio"-> {
+                aforoView.text = "Medio"
+                pcAforo.progress = 50F
+            }
+            "altos"-> {
+                aforoView.text = "Alto"
+                pcAforo.progress = 75F
+            }
+            "lleno"-> {
+                aforoView.text = "Lleno"
+                pcAforo.progress = 100F
+            }
+        }
+
+
         pcTemp.progress = temp
         pcPark.progress = park
         pcUvs.progress = uvs

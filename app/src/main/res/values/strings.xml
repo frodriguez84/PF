@@ -18,4 +18,6 @@
     <string name="attachment_summary_off">No acepto compartir mi informacion</string>
     <string name="mostrar_dtis">Mostrar DTis</string>
 
+    <string name="dtiBack">https://628e51a3368687f3e714cc52.mockapi.io/</string>
+
 </resources>

@@ -13,22 +13,8 @@
         android:layout_height="75dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="84dp"
         android:src="@drawable/ciudades"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="129dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:src="@drawable/reddti"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -59,13 +45,16 @@
 
     <TextView
         android:id="@+id/nameBeachView"
-        android:layout_width="226dp"
+        android:layout_width="185dp"
         android:layout_height="34dp"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="68dp"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/list_popup_button" />
 
@@ -121,13 +110,14 @@
 
     <Button
         android:id="@+id/btnContacto"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
+        android:layout_width="395dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
         android:background="@color/purple_700"
         android:text="contacto"
+        app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,13 +125,14 @@
 
     <Button
         android:id="@+id/goBeachBtn"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
+        android:layout_width="395dp"
+        android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:background="@color/purple_700"
         android:text="Ver Destino"
+        app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,17 +140,19 @@
 
     <Button
         android:id="@+id/btnOut"
-        android:layout_width="0dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="41dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="201dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/purple_700"
-        android:text="Cerrar sesion"
+        android:textAlignment="center"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/outt"
+        app:iconSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnContacto" />
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/pctemp"

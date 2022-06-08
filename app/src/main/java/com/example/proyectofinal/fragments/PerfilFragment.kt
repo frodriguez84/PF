@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.MyFragment
 import com.example.proyectofinal.viewmodels.PerfilViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -19,9 +21,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 class PerfilFragment : Fragment() {
 
 
-   private lateinit var v : View
-   private lateinit var editBtn : Button
-    private lateinit var formBtn : Button
+    private lateinit var v: View
+    private lateinit var editBtn: Button
+    private lateinit var formBtn: Button
+    var myFragment = MyFragment()
     private val vm: PerfilViewModel by viewModels()
 
     override fun onCreateView(
@@ -52,11 +55,17 @@ class PerfilFragment : Fragment() {
             val action = PerfilFragmentDirections.actionPerfilFragmentToFormularioFragment()
             v.findNavController().navigate(action)
         }
+        
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                myFragment.show(requireActivity().supportFragmentManager, "hola")
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
     }
 
 }

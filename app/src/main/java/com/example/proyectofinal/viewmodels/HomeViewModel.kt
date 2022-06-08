@@ -38,7 +38,7 @@ class HomeViewModel : ViewModel() {
 
     private var dtiDocument: String = "0"
 
-    private var aforo: Float = 0F
+    private lateinit var aforo: String
     private var temp: Float = 0F
     private var park: Float = 0F
 
@@ -96,26 +96,43 @@ class HomeViewModel : ViewModel() {
         val dti = ListDti[pos]
 
 
-        pcAforo.max = dti.maxAforo.toFloat()
-        beachName.text = dti.nombre
-        aforo = dti.aforo.toFloat()
-        temp = dti.temperatura.toFloat()
+        pcAforo.max = 5000F
+        beachName.text = dti.name
+        aforo = dti.aforo
+        temp = dti.temperatura
 
-        pcPark.max = dti.maxPark.toFloat()
-        park = dti.parking.toFloat()
+        pcPark.max = dti.maxParking
+        park = dti.parking
 
-        aforoView.text = dti.aforo + " Personas"
-        pcAforo.progress = aforo
-        tempView.text = dti.temperatura + "°"
+        //aforoView.text = dti.aforo + " Personas"
+        //pcAforo.progress = aforo
+
+        when(aforo){
+            "bajo"-> {
+                aforoView.text = "Bajo"
+                pcAforo.progress = 25F
+            }
+            "medio"-> {
+                aforoView.text = "Medio"
+                pcAforo.progress = 50F
+            }
+            "altos"-> {
+                aforoView.text = "Alto"
+                pcAforo.progress = 75F
+            }
+            "lleno"-> {
+                aforoView.text = "Lleno"
+                pcAforo.progress = 100F
+            }
+        }
+
+        tempView.text = dti.temperatura.toString() + "°"
         pcTemp.progress = temp
-        parkView.text = dti.parking + " Ocupados"
+        parkView.text = dti.parking.toString() + " Ocupados"
         pcPark.progress = park
 
     }
 
-    fun cleanLogUser() {
-        userMailLogin = ""
-    }
 
     fun dtiCercano(v: View) {
 
@@ -131,8 +148,8 @@ class HomeViewModel : ViewModel() {
 
             val locationB = Location("punto B")
 
-            locationB.latitude = dti.geopoint.latitud.toDouble()
-            locationB.longitude = dti.geopoint.longitud.toDouble()
+            locationB.latitude = dti.location.coordinates[0]
+            locationB.longitude = dti.location.coordinates[1]
 
             val distance = locationA.distanceTo(locationB)
 
@@ -144,8 +161,6 @@ class HomeViewModel : ViewModel() {
         dtiDocument = dtiCerca.toString()
         showData(dtiCerca, v)
     }
-
-
 }
 
 

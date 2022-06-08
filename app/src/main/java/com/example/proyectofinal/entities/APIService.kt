@@ -10,6 +10,9 @@ interface APIService {
     @GET("dti")
     fun getDtiList(): Call<List<Dti>>
 
+    @GET("users")
+    fun getBackEnd(): Call<List<Dti>>
+
     @GET()
     fun getDtiByid(id: String): Call<Dti>
 

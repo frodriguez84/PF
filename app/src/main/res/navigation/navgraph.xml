@@ -99,7 +99,7 @@
         tools:layout="@layout/fragment_maps" >
         <argument
             android:name="geo"
-            app:argType="com.example.proyectofinal.entities.Geopoint" />
+            app:argType="com.example.proyectofinal.entities.Geo" />
         <argument
             android:name="nombre"
             app:argType="string" />

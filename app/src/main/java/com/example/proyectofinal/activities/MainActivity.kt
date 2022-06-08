@@ -24,6 +24,7 @@ import com.example.proyectofinal.entities.APIService
 import com.example.proyectofinal.entities.Dti
 import com.example.proyectofinal.entities.RestEngine
 import com.example.proyectofinal.entities.UserRepository
+import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.ListDtiNombres
 import com.example.proyectofinal.entities.UserRepository.userLatitud
 import com.example.proyectofinal.entities.UserRepository.userLongitud
@@ -76,7 +77,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
         GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.IO) { getLastLocation() }
-            withContext(Dispatchers.IO) { callServiceGetDti() }
+            withContext(Dispatchers.IO) { callServiceGetBack() }
+            //withContext(Dispatchers.IO) { callServiceGetDti() }
         }
     }
 
@@ -222,13 +224,37 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
             ) {
                 val r = response.body()
                 if (r != null) {
-                    UserRepository.ListDti = r
+                    ListDti = r
                 }
-                getDtiNames(UserRepository.ListDti)
+                getDtiNames(ListDti)
+                Toast.makeText(this@MainActivity, "DTI CARGADOS" + ListDti, Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<List<Dti>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "ERROR", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
 
+    private fun callServiceGetBack() {
+        val backService: APIService = RestEngine.getRetrofitDtis().create(APIService::class.java)
+        val result: Call<List<Dti>> = backService.getBackEnd()
+
+        result.enqueue(object : Callback<List<Dti>> {
+            override fun onResponse(
+                call: Call<List<Dti>>,
+                response: Response<List<Dti>>
+            ) {
+                val r = response.body()
+                if (r != null) {
+                    ListDti = r
+                }
+                getDtiNames(ListDti)
+                Toast.makeText(this@MainActivity, "DTI CARGADOS", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<List<Dti>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "ERROR", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -236,7 +262,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     fun getDtiNames(list: List<Dti>): MutableList<String> {
 
         for (l in list) {
-            ListDtiNombres.addAll(listOf(l.nombre))
+            ListDtiNombres.addAll(listOf(l.name))
         }
         return ListDtiNombres
     }
