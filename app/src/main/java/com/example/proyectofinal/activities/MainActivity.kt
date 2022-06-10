@@ -40,10 +40,8 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
 
-
     private lateinit var bottomNavView: BottomNavigationView
     private lateinit var navHostFragment: NavHostFragment
-    var fm = supportFragmentManager
     private val PERMISSION_ID = 42
     lateinit var mFusedLocationClient: FusedLocationProviderClient
 
@@ -146,7 +144,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
-        var mLocationRequest = LocationRequest()
+        val mLocationRequest = LocationRequest()
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         mLocationRequest.interval = 0
         mLocationRequest.fastestInterval = 0
@@ -160,14 +158,14 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
     private val mLocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
-            var mLastLocation: Location = locationResult.lastLocation
+            val mLastLocation: Location = locationResult.lastLocation
             Log.d("Test", mLastLocation.latitude.toString())
             Log.d("Test", mLastLocation.longitude.toString())
         }
     }
 
     private fun isLocationEnabled(): Boolean {
-        var locationManager: LocationManager =
+        val locationManager: LocationManager =
             getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
@@ -227,7 +225,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                     ListDti = r
                 }
                 getDtiNames(ListDti)
-                Toast.makeText(this@MainActivity, "DTI CARGADOS" + ListDti, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "DTI CARGADOS", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<List<Dti>>, t: Throwable) {
@@ -250,11 +248,11 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                     ListDti = r
                 }
                 getDtiNames(ListDti)
-                Toast.makeText(this@MainActivity, "DTI CARGADOS", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this@MainActivity, "DTI CARGADOS", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<List<Dti>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "ERROR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "ERROR: No se cargaron los destinos", Toast.LENGTH_SHORT).show()
             }
         })
     }

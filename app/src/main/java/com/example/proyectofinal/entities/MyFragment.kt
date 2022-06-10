@@ -23,14 +23,12 @@ class MyFragment: DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView: View = inflater.inflate(R.layout.fragment_dialog, container, false)
         val cancelButton = rootView.findViewById<Button>(R.id.cancelBtn)
         val acceptButton = rootView.findViewById<Button>(R.id.aceptBtn)
-        val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
         usuario = rootView.findViewById(R.id.mailUs)
         usuario.text = userMailLogin
 
@@ -40,11 +38,8 @@ class MyFragment: DialogFragment() {
         acceptButton.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             cleanLogUser()
-            //dismiss()
             onDestroyView()
-            //findNavController().navigate(action)
             activity?.finish()
-
         }
 
         return rootView
@@ -53,5 +48,4 @@ class MyFragment: DialogFragment() {
     private fun cleanLogUser(){
         userMailLogin = ""
     }
-
 }

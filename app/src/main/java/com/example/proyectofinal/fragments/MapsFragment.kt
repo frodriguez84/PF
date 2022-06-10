@@ -42,10 +42,10 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
     private fun createMarker() {
         val gopoint = LatLng(lat, long)
-        map.addMarker(MarkerOptions().position(gopoint).title("Marker in $nombre"))
+        map.addMarker(MarkerOptions().position(gopoint).title("Destino: $nombre"))
         //googleMap.moveCamera(CameraUpdateFactory.newLatLng(gopoint))
         map.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(gopoint, 14f),
+            CameraUpdateFactory.newLatLngZoom(gopoint, 16f),
             4000,
             null
         )
@@ -63,8 +63,8 @@ class MapsFragment : Fragment(), OnMapReadyCallback {
 
         val geo = MapsFragmentArgs.fromBundle(requireArguments()).geo
         nombre = MapsFragmentArgs.fromBundle(requireArguments()).nombre
-        lat = geo.latitud?.toDouble()!!
-        long = geo.longitud?.toDouble()!!
+        lat = geo.latitud.toDouble()
+        long = geo.longitud.toDouble()
 
         return v
     }
