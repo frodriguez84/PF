@@ -268,36 +268,41 @@
 
     <TextView
         android:id="@+id/nameBeach"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="266dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
         android:text="Nombre Playa"
         android:textAlignment="center"
-        android:textSize="38sp"
+        android:textSize="35sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAddFavoritos"
-        android:layout_width="231dp"
+        android:layout_width="wrap_content"
         android:layout_height="43dp"
         android:layout_marginStart="88dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="92dp"
         android:text="Agregar a Favoritos"
+        app:icon="@drawable/favorite"
+        app:iconSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.277"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/space2" />
 
     <Button
         android:id="@+id/btnRemoveFavoritos"
-        android:layout_width="231dp"
+        android:layout_width="wrap_content"
         android:layout_height="43dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="15dp"
         android:text="Eliminar de Favoritos"
+        app:icon="@drawable/remove"
+        app:iconSize="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
@@ -487,18 +492,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnMap"
-        android:layout_width="161dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="135dp"
-        android:text="Ubicacion"
-        app:icon="@android:drawable/ic_dialog_map"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="30dp"
+        android:clickable="true"
+        android:src="@drawable/googlemaps"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintStart_toEndOf="@+id/nameBeach" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="322dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:text="Ver en Mapa"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/windDirTV" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

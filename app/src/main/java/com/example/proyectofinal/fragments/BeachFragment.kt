@@ -7,18 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
+import android.widget.ImageView
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.proyectofinal.R
 import com.example.proyectofinal.entities.Geo
-import com.example.proyectofinal.entities.Geopoint
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.viewmodels.BeachViewModel
-import com.squareup.okhttp.Dispatcher
 
 
 class BeachFragment : Fragment() {
@@ -28,7 +24,7 @@ class BeachFragment : Fragment() {
     private val vm: BeachViewModel by viewModels()
 
     private lateinit var idPlaya: String
-    private lateinit var btnMap: Button
+    private lateinit var btnMap: ImageView
     private lateinit var bAddToFav: Button
     private lateinit var bRemoveFav: Button
 
