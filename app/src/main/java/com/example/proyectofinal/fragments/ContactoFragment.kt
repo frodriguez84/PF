@@ -8,26 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.proyectofinal.R
+import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.viewmodels.ContactoViewModel
 import com.example.proyectofinal.viewmodels.HomeViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class ContactoFragment : Fragment() {
 
-    private val vm: ContactoViewModel by viewModels()
     private lateinit var btnCiudades : Button
     private lateinit var btnReddit : Button
     private lateinit var btnMail : Button
+    private  val vm: ContactoViewModel by viewModels()
+    private lateinit var goForm : Button
 
-    private lateinit var consulta : TextView
     private lateinit var v : View
-
-    private val url_ciudades = "https://ciudadesdelfuturo.org.ar/"
-    private val url_reddti = "https://www.reddti-ar.com.ar/"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,46 +39,45 @@ class ContactoFragment : Fragment() {
         btnCiudades = v.findViewById(R.id.btnCiudades)
         btnReddit = v.findViewById(R.id.btnReddit)
         btnMail = v.findViewById(R.id.btnSendMail)
-        consulta = v.findViewById(R.id.consTextView)
+        goForm = v.findViewById(R.id.btnForm)
         return v
     }
 
     override fun onStart() {
         super.onStart()
 
-        btnCiudades.setOnClickListener {
+        if(UserRepository.ListDti.isEmpty()){
 
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url_ciudades)
-            startActivity(i)
+            val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottom_bar)
+            navBar.visibility = View.GONE
 
         }
 
+        btnCiudades.setOnClickListener {
+
+            vm.goCiudadesWeb(requireContext())
+        }
+
         btnReddit.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse(url_reddti)
-            startActivity(i)
+            vm.goRedditWeb(requireContext())
 
         }
 
         btnMail.setOnClickListener {
 
-            val mailto = "mailto:fernando.rodriguez84@yahoo.com.ar"
+            vm.sendMail(requireContext() , v)
+        }
 
-            val emailIntent = Intent(Intent.ACTION_SENDTO)
-            emailIntent.data = Uri.parse(mailto)
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT ,"Consulta")
-            emailIntent.putExtra(Intent.EXTRA_TEXT ,consulta.text.toString())
+        goForm.setOnClickListener {
+            val action = ContactoFragmentDirections.actionContactoFragmentToFormularioFragment()
+            v.findNavController().navigate(action)
+        }
 
-            startActivity(emailIntent)
-
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            vm.dialog(requireContext() , requireActivity())
         }
 
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
 
 }

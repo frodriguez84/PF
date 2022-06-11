@@ -68,9 +68,6 @@
         <action
             android:id="@+id/action_beachFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_beachFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/recuMailFragment"
@@ -91,17 +88,9 @@
         android:id="@+id/contactoFragment"
         android:name="com.example.proyectofinal.fragments.ContactoFragment"
         android:label="contacto_fragment"
-        tools:layout="@layout/contacto_fragment" />
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.example.proyectofinal.fragments.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" >
-        <argument
-            android:name="geo"
-            app:argType="com.example.proyectofinal.entities.Geo" />
-        <argument
-            android:name="nombre"
-            app:argType="string" />
+        tools:layout="@layout/contacto_fragment" >
+        <action
+            android:id="@+id/action_contactoFragment_to_formularioFragment"
+            app:destination="@id/formularioFragment" />
     </fragment>
 </navigation>

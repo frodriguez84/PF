@@ -2,6 +2,7 @@ package com.example.proyectofinal.viewmodels
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.location.Location
 import android.view.View
@@ -14,6 +15,7 @@ import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.listOfFavs
 import com.example.proyectofinal.entities.UserRepository.userMailLogin
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 import me.tankery.lib.circularseekbar.CircularSeekBar
@@ -23,24 +25,29 @@ class HomeViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
 
-    private lateinit var beachName: TextView
-    private lateinit var pcAforo: CircularSeekBar
+
+    private lateinit var beachName : TextView
+    private lateinit var pcAforo : CircularSeekBar
     private lateinit var aforoView: TextView
 
-    private lateinit var pcTemp: CircularSeekBar
+    private lateinit var pcTemp : CircularSeekBar
     private lateinit var tempView: TextView
 
-    private lateinit var pcPark: CircularSeekBar
+    private lateinit var pcPark : CircularSeekBar
     private lateinit var parkView: TextView
 
     private lateinit var listPopupWindowButton: Button
     private lateinit var listPopupWindow: ListPopupWindow
 
-    private var dtiDocument: String = "0"
+    private lateinit var aforo : String
+    private var temp : Float = 0F
+    private  var park : Float = 0F
 
-    private lateinit var aforo: String
-    private var temp: Float = 0F
-    private var park: Float = 0F
+    private var lugDispo : Int = 0
+
+
+
+
 
     fun populateFavs() {
         db.collection("users").document(userMailLogin).get().addOnSuccessListener {
@@ -61,10 +68,10 @@ class HomeViewModel : ViewModel() {
 
         listPopupWindow.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
 
-                showData(position, v)
-                dtiDocument = position.toString()
-                UserRepository.userBeachSelect = position.toString()
-                listPopupWindow.dismiss()
+            showData(position, v)
+            UserRepository.dtiDocument = position.toString()
+            UserRepository.userBeachSelect = position.toString()
+            listPopupWindow.dismiss()
 
         }
 
@@ -75,12 +82,7 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun getDtiDocument(): String {
-        return dtiDocument
-    }
 
-
-    @SuppressLint("SetTextI18n")
     fun showData(pos: Int, v: View) {
 
         beachName = v.findViewById(R.id.nameBeachView)
@@ -93,19 +95,24 @@ class HomeViewModel : ViewModel() {
         parkView = v.findViewById(R.id.parkTextView)
         pcPark = v.findViewById(R.id.pcpark)
 
-        val dti = ListDti[pos]
+        var dti =  ListDti[pos]
 
 
-        pcAforo.max = 5000F
         beachName.text = dti.name
         aforo = dti.aforo
-        temp = dti.temperatura
+        temp =  dti.temperatura
 
         pcPark.max = dti.maxParking
+        pcPark.progress = dti.parking
+
+
+        tempView.text = dti.temperatura.toString()+"°"
+        pcTemp.progress = temp
         park = dti.parking
 
-        //aforoView.text = dti.aforo + " Personas"
-        //pcAforo.progress = aforo
+        lugDispo = (dti.maxParking - dti.parking).toInt()
+
+        parkView.text = lugDispo.toString()+" Disponibles"
 
         when(aforo){
             "bajo"-> {
@@ -126,20 +133,19 @@ class HomeViewModel : ViewModel() {
             }
         }
 
-        tempView.text = dti.temperatura.toString() + "°"
-        pcTemp.progress = temp
-        parkView.text = dti.parking.toString() + " Ocupados"
-        pcPark.progress = park
-
     }
 
+    fun cleanLogUser() {
+        userMailLogin = ""
+    }
 
-    fun dtiCercano(v: View) {
+    fun dtiCercano(v : View){
 
         var dtiCerca = 0
         var distEntreDTIyUser = 9999999999999999F
+        var position = 0
 
-        for ((position, dti) in ListDti.withIndex()) {
+        for (dti in ListDti){
 
             val locationA = Location("punto A")
 
@@ -153,14 +159,32 @@ class HomeViewModel : ViewModel() {
 
             val distance = locationA.distanceTo(locationB)
 
-            if (distance < distEntreDTIyUser) {
+            if (distance < distEntreDTIyUser ){
                 dtiCerca = position
                 distEntreDTIyUser = distance
             }
+            position++
         }
-        dtiDocument = dtiCerca.toString()
-        showData(dtiCerca, v)
+        UserRepository.dtiDocument = dtiCerca.toString()
+        showData(dtiCerca , v )
     }
+
+    fun dialog(context: Context, activity : Activity) {
+        AlertDialog.Builder(context)
+            .setMessage("Cerrar Aplicacion?")
+            .setCancelable(false)
+            .setPositiveButton("Aceptar") { dialog, whichButton ->
+                FirebaseAuth.getInstance().signOut()
+                cleanLogUser()
+                activity.finish()
+            }
+            .setNegativeButton("Cancelar") { dialog, whichButton ->
+
+            }
+            .show()
+
+    }
+
 }
 
 

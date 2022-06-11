@@ -247,7 +247,7 @@ class FormularioViewModel : ViewModel() {
     }
 
     fun messageSaveFormFailed(context: Context){
-        Toast.makeText(context, "Complete todos los campos del formulario, Gracias", Toast.LENGTH_SHORT)
+        Toast.makeText(context, "Complete todos los campos de la encuesta, Gracias", Toast.LENGTH_SHORT)
             .show()
     }
 

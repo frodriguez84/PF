@@ -12,7 +12,7 @@
         android:layout_width="118dp"
         android:layout_height="75dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ciudades"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="8dp"
         android:text="Otros Destinos"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,8 +69,8 @@
         app:cs_circle_progress_color="@android:color/holo_red_dark"
         app:cs_circle_stroke_width="8dp"
         app:cs_circle_style="butt"
-        app:cs_disable_pointer="false"
-        app:cs_disable_progress_glow="false"
+        app:cs_disable_pointer="true"
+        app:cs_disable_progress_glow="true"
         app:cs_end_angle="0"
         app:cs_hide_progress_when_empty="true"
         app:cs_lock_enabled="true"
@@ -109,26 +109,11 @@
         app:layout_constraintTop_toTopOf="@+id/pcaforo" />
 
     <Button
-        android:id="@+id/btnContacto"
-        android:layout_width="395dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/purple_700"
-        android:text="contacto"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goBeachBtn" />
-
-    <Button
         android:id="@+id/goBeachBtn"
         android:layout_width="395dp"
         android:layout_height="38dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
         android:background="@color/purple_700"
         android:text="Ver Destino"
@@ -137,22 +122,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pctemp" />
-
-    <Button
-        android:id="@+id/btnOut"
-        android:layout_width="41dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="201dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/purple_700"
-        android:textAlignment="center"
-        app:cornerRadius="12dp"
-        app:icon="@drawable/outt"
-        app:iconSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <me.tankery.lib.circularseekbar.CircularSeekBar
         android:id="@+id/pctemp"
@@ -166,8 +135,8 @@
         app:cs_circle_progress_color="@android:color/holo_red_dark"
         app:cs_circle_stroke_width="8dp"
         app:cs_circle_style="butt"
-        app:cs_disable_pointer="false"
-        app:cs_disable_progress_glow="false"
+        app:cs_disable_pointer="true"
+        app:cs_disable_progress_glow="true"
         app:cs_end_angle="0"
         app:cs_hide_progress_when_empty="true"
         app:cs_lock_enabled="true"
@@ -218,8 +187,8 @@
         app:cs_circle_progress_color="@android:color/holo_red_dark"
         app:cs_circle_stroke_width="8dp"
         app:cs_circle_style="butt"
-        app:cs_disable_pointer="false"
-        app:cs_disable_progress_glow="false"
+        app:cs_disable_pointer="true"
+        app:cs_disable_progress_glow="true"
         app:cs_end_angle="0"
         app:cs_hide_progress_when_empty="true"
         app:cs_lock_enabled="true"
@@ -305,6 +274,27 @@
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/pcpark"
         app:layout_constraintTop_toBottomOf="@+id/space" />
+
+    <ImageView
+        android:id="@+id/btnOut"
+        android:layout_width="42dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="22dp"
+        android:longClickable="true"
+        android:src="@drawable/logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="21dp"
+        android:text="Logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--<ProgressBar
         android:id="@+id/progressBar"

@@ -4,6 +4,7 @@
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
+    <string name="datos_personales">Datos Personales</string>
     <string name="night_mode_header">Modo Oscuro</string>
 
     <!-- Messages Preferences -->

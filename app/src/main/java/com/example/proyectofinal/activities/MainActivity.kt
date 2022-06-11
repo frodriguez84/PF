@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -15,7 +14,6 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -23,25 +21,21 @@ import com.example.proyectofinal.R
 import com.example.proyectofinal.entities.APIService
 import com.example.proyectofinal.entities.Dti
 import com.example.proyectofinal.entities.RestEngine
-import com.example.proyectofinal.entities.UserRepository
 import com.example.proyectofinal.entities.UserRepository.ListDti
 import com.example.proyectofinal.entities.UserRepository.ListDtiNombres
 import com.example.proyectofinal.entities.UserRepository.userLatitud
 import com.example.proyectofinal.entities.UserRepository.userLongitud
 import com.google.android.gms.location.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
+class MainActivity : AppCompatActivity() {
 
-    private lateinit var bottomNavView: BottomNavigationView
+    private lateinit var bottomNavView : BottomNavigationView
     private lateinit var navHostFragment: NavHostFragment
+
     private val PERMISSION_ID = 42
     lateinit var mFusedLocationClient: FusedLocationProviderClient
 
@@ -49,68 +43,34 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
-            .registerOnSharedPreferenceChangeListener(this)
-
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_login) as NavHostFragment
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_login) as NavHostFragment
         bottomNavView = findViewById(R.id.bottom_bar)
         NavigationUI.setupWithNavController(bottomNavView, navHostFragment.navController)
 
-        navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
+        navHostFragment.navController.addOnDestinationChangedListener{_, destination, _ ->
+            when(destination.id){
                 R.id.loginFragment -> hideBottomBar()
                 R.id.beachFragment -> hideBottomBar()
                 R.id.recuMailFragment -> hideBottomBar()
                 R.id.editProfileFragment -> hideBottomBar()
-                R.id.contactoFragment -> hideBottomBar()
                 R.id.formularioFragment -> hideBottomBar()
-                R.id.mapsFragment -> hideBottomBar()
                 else -> showBottomBar()
             }
         }
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        GlobalScope.launch(Dispatchers.Main) {
-            withContext(Dispatchers.IO) { getLastLocation() }
-            withContext(Dispatchers.IO) { callServiceGetBack() }
-            //withContext(Dispatchers.IO) { callServiceGetDti() }
-        }
+        getLastLocation()
+        callServiceGetBack()
+
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        if (key == "dark_mode") {
-            val prefs = sharedPreferences?.getString(key, "1")
-
-            when (prefs?.toInt()) {
-                1 -> {
-                    AppCompatDelegate.setDefaultNightMode(
-                        AppCompatDelegate.MODE_NIGHT_NO
-                    )
-                }
-                2 -> {
-                    AppCompatDelegate.setDefaultNightMode(
-                        AppCompatDelegate.MODE_NIGHT_YES
-                    )
-                }
-            }
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        androidx.preference.PreferenceManager.getDefaultSharedPreferences(this)
-            .registerOnSharedPreferenceChangeListener(this)
-    }
-
-    private fun showBottomBar() {
+    private fun showBottomBar(){
         val navBar: BottomNavigationView = findViewById(R.id.bottom_bar)
         navBar.visibility = View.VISIBLE
     }
 
-    private fun hideBottomBar() {
+    private fun hideBottomBar(){
         val navBar: BottomNavigationView = findViewById(R.id.bottom_bar)
         navBar.visibility = View.GONE
     }
@@ -126,12 +86,10 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                     } else {
                         userLatitud = location.latitude.toString()
                         userLongitud = location.longitude.toString()
-                        Log.d("TestLatitud", location.latitude.toString())
-                        Log.d("TestLongitud", location.longitude.toString())
-
+                        Log.d ("Test Latitud",location.latitude.toString())
+                        Log.d ("Test Longitud",location.longitude.toString())
                     }
                 }
-
             } else {
                 Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
@@ -144,7 +102,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
     @SuppressLint("MissingPermission")
     private fun requestNewLocationData() {
-        val mLocationRequest = LocationRequest()
+        var mLocationRequest = LocationRequest()
         mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         mLocationRequest.interval = 0
         mLocationRequest.fastestInterval = 0
@@ -158,15 +116,14 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
     private val mLocationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
-            val mLastLocation: Location = locationResult.lastLocation
-            Log.d("Test", mLastLocation.latitude.toString())
-            Log.d("Test", mLastLocation.longitude.toString())
+            var mLastLocation: Location = locationResult.lastLocation
+            Log.d ("Test",mLastLocation.latitude.toString())
+            Log.d ("Test",mLastLocation.longitude.toString())
         }
     }
 
     private fun isLocationEnabled(): Boolean {
-        val locationManager: LocationManager =
-            getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        var locationManager: LocationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER
         )
@@ -190,19 +147,13 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     private fun requestPermissions() {
         ActivityCompat.requestPermissions(
             this,
-            arrayOf(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ),
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
             PERMISSION_ID
         )
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSION_ID) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
@@ -211,28 +162,6 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         }
     }
 
-    private fun callServiceGetDti() {
-        val dtiService: APIService = RestEngine.getRetrofitDtis().create(APIService::class.java)
-        val result: Call<List<Dti>> = dtiService.getDtiList()
-
-        result.enqueue(object : Callback<List<Dti>> {
-            override fun onResponse(
-                call: Call<List<Dti>>,
-                response: Response<List<Dti>>
-            ) {
-                val r = response.body()
-                if (r != null) {
-                    ListDti = r
-                }
-                getDtiNames(ListDti)
-                Toast.makeText(this@MainActivity, "DTI CARGADOS", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onFailure(call: Call<List<Dti>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "ERROR", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 
     private fun callServiceGetBack() {
         val backService: APIService = RestEngine.getRetrofitDtis().create(APIService::class.java)
@@ -247,23 +176,29 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
                 if (r != null) {
                     ListDti = r
                 }
-                getDtiNames(ListDti)
-                //Toast.makeText(this@MainActivity, "DTI CARGADOS", Toast.LENGTH_SHORT).show()
+                if(!r.isNullOrEmpty()){
+                    getDtiNames(ListDti)
+                }
+
+
             }
 
             override fun onFailure(call: Call<List<Dti>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "ERROR: No se cargaron los destinos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "ERROR", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     fun getDtiNames(list: List<Dti>): MutableList<String> {
-
-        for (l in list) {
-            ListDtiNombres.addAll(listOf(l.name))
+        if(ListDtiNombres.isEmpty()) {
+            for (l in list) {
+                ListDtiNombres.addAll(listOf(l.name))
+            }
+            Toast.makeText(this@MainActivity, "DTI CARGADOS", Toast.LENGTH_SHORT).show()
         }
         return ListDtiNombres
     }
+
 }
 
 
